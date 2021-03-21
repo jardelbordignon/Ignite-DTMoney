@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import theme from './theme.json'
 
@@ -61,4 +61,17 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 0.6;
     cursor: not-allowed;
   }
+`
+
+export const Row = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Column = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `

@@ -1,12 +1,17 @@
 import logoSvg from '../../assets/logo.svg'
 import { Container, Content } from './styles'
 
-export function Header() {
+interface IHeader {
+  onOpenNewTransactionModal: () => void
+}
+
+export function Header({ onOpenNewTransactionModal }: IHeader) {
+  
   return (
     <Container>
       <Content>
         <img src={logoSvg} alt="dt money"/>
-        <button>
+        <button onClick={onOpenNewTransactionModal}>
           Nova transação
         </button>
       </Content>

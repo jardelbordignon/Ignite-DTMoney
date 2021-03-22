@@ -42,3 +42,30 @@ export const Container = styled.form `
     font-weight: 600;
   }
 `
+
+export const TransactionsTypeContainer = styled.div `
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:0.5rem;
+
+  button { 
+    height: 4rem;
+    border: 1px solid #d7d7d7;
+    border-radius: 0.5rem;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img { width: 20px; }
+
+    span {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      color: var(--titles);
+    }
+  }
+`

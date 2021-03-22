@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     --tertiary: ${theme.colors.tertiary};
     
     --texts: ${theme.colors.texts};
-    --texts: ${theme.colors.titles};
+    --titles: ${theme.colors.titles};
 
     --background: ${theme.colors.background};
     --shape: ${theme.colors.shape};
@@ -58,6 +58,11 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     outline: none;
     cursor: pointer;
+
+    transition: filter 0.2;
+  }
+  button:hover {
+    filter: brightness(0.9);
   }
 
   [disabled] {
@@ -85,6 +90,14 @@ export const GlobalStyle = createGlobalStyle`
     padding: 3rem;
     position: relative;
     border-radius: 0.5rem;
+  }
+
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
   }
 
 `

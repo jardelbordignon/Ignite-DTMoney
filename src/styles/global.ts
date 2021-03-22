@@ -14,6 +14,9 @@ export const GlobalStyle = createGlobalStyle`
 
     --background: ${theme.colors.background};
     --shape: ${theme.colors.shape};
+
+    --green: #33CC95;
+    --red: #E62E4D;
   }
 
   * {

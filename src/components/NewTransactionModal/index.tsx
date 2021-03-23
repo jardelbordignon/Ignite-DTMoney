@@ -1,10 +1,11 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useContext } from 'react'
 import Modal from 'react-modal'
+
+import { TransactionsContext } from '../../TransactionsContext'
 
 import closeSvg from '../../assets/close.svg'
 import incomeSvg from '../../assets/income.svg'
 import outcomeSvg from '../../assets/outcome.svg'
-import api from '../../services/api'
 
 import { Container, TransactionsTypeContainer, RadioBox } from './styles'
 
@@ -14,18 +15,18 @@ interface INewTransactionModal {
 }
 
 export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionModal) {
+  const { createTransaction } = useContext( TransactionsContext )
   const [transaction, setTransaction] = useState({
     title: '',
-    value: 0,
+    amount: 0,
     category: '',
     type: 'deposit'
   })
-  const [type, setType] = useState('deposit')
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
-    //console.log(transaction)
-    api.post('/transactions', transaction)
+
+    createTransaction(transaction)
   }
 
   return (
@@ -53,15 +54,15 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionM
         <input
           placeholder="Valor"
           type="number"
-          value={transaction.value}
-          onChange={e => setTransaction({...transaction, value: Number(e.target.value)})}
+          value={transaction.amount}
+          onChange={e => setTransaction({...transaction, amount: Number(e.target.value)})}
         />
 
         <TransactionsTypeContainer>
           <RadioBox
             type='button'
-            onClick={() => setType('deposit')}
-            isActive={type === 'deposit'}
+            onClick={() => setTransaction({...transaction, type: 'deposit'})}
+            isActive={transaction.type === 'deposit'}
             activeColor='green'
           >
             <img src={incomeSvg} alt="Entrada" />
@@ -70,8 +71,8 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionM
 
           <RadioBox
             type='button'
-            onClick={() => setType('withdraw')}
-            isActive={type === 'withdraw'}
+            onClick={() => setTransaction({...transaction, type: 'withdraw'})}
+            isActive={transaction.type === 'withdraw'}
             activeColor='red'
           >
             <img src={outcomeSvg} alt="Saída" />

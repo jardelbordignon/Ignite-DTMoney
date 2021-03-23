@@ -16,17 +16,23 @@ interface INewTransactionModal {
 
 export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionModal) {
   const { createTransaction } = useContext( TransactionsContext )
-  const [transaction, setTransaction] = useState({
+
+  const initialData = {
     title: '',
     amount: 0,
     category: '',
     type: 'deposit'
-  })
+  }
 
-  function handleCreateNewTransaction(event: FormEvent) {
+  const [transaction, setTransaction] = useState(initialData)
+
+  async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    createTransaction(transaction)
+    await createTransaction(transaction)
+
+    setTransaction(initialData)
+    onRequestClose();
   }
 
   return (

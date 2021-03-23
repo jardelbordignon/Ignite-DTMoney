@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState, ReactNode } from 'react'
-import api from './services/api'
+import { createContext, useEffect, useState, ReactNode, useContext } from 'react'
+import api from '../services/api'
 
 interface ICreateTransactionDTO {
   title: string
@@ -22,7 +22,7 @@ interface ITransactionsContextData {
   createTransaction: (transaction: ICreateTransactionDTO) => Promise<void>
 }
 
-export const TransactionsContext = createContext<ITransactionsContextData>(
+const TransactionsContext = createContext<ITransactionsContextData>(
   {} as ITransactionsContextData
 )
 
@@ -46,4 +46,8 @@ export function TransactionsProvider({ children }: ITransactionsProvider) {
       { children }
     </TransactionsContext.Provider>
   )
+}
+
+export function useTransactions() {
+  return useContext(TransactionsContext)
 }
